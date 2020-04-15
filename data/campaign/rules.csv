@@ -1,0 +1,28 @@
+id,trigger,conditions,script,text,options,notes
+"#RULESET_NAME HireableBounties",,,,,,
+,,,,,,
+# Conversations,,,,,,
+,,,,,,
+# Fleet/Entity interactions,,,,,,
+,,,,,,
+# BestedInCombat,,,,,,
+,,,,,,
+# HVB,,,,,,
+,,,,,,
+# Hiring HVB,,,,,,
+checkHVBWantingToTalk,,"!$global.initiatedCommsAlready
+NPCWantsComms","$global.initiatedCommsAlready = true 0
+FireBest ConfirmNPCWantsToTalk","As you get near $entityName, you get an incoming comm request.",,
+playerOptionsVSContactingHVB,ConfirmNPCWantsToTalk,"!$contactedPlayerRecently","$contactedPlayerRecently = true 2",,"acceptNPCComm:Accept the comm request
+declineNPCComm:Ignore it",
+abortHVBWantsToTalk,ConfirmNPCWantsToTalk,"$contactedPlayerRecently","EndConversation",,,
+HVBCommsDecline,DialogOptionSelected,"$option == declineNPCComm",,"You decline the comms request and continue on your way.",,
+HVBCommsAccept,NPCCommsRequest,"$option == acceptNPCComm","ShowPersonVisual
+FireBest NPCCommsRequest",,,
+HVB Hire,,"$ome_hireable",,,,
+"#END Hiring HVB",,,,,,
+"#END HVB",,,,,,
+"#END BestedInCombat",,,,,,
+"#END Fleet/Entity interactions",,,,,,
+"#END Conversations",,,,,,
+

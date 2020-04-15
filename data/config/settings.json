@@ -1,0 +1,10 @@
+{
+	"designTypeColors":{
+		"High Value Bounty":[196,104,55,255],
+    },
+    "graphics":{
+		"blueprint_packages":{
+            "Hireable_HVB_blueprint":"Hireable HVBs/graphics/icons/cargo/hireablebounty.png",
+		},
+	}
+}
