@@ -131,6 +131,28 @@ CargoAPI extraBountySalvage = Global.getFactory().createCargo(true);
     }
 }
 
+// build list of prerequisite bounty IDs
+String prerequisiteBountiesString = row.optString("neverSpawnUnlessBountiesCompleted");
+List<String> prerequisiteBountiesList = null;
+if (prerequisiteBountiesString != null) {
+    prerequisiteBountiesList = new ArrayList<>(Arrays.asList(prerequisiteBountiesString.split("\\s*(,\\s*)+")));
+    if (prerequisiteBountiesList.isEmpty() || prerequisiteBountiesList.get(0).isEmpty()) {
+        prerequisiteBountiesList = null;
+    }
+
+
+    public class BountyResult {
+
+        public BountyResultType type;
+        public int payment;
+        public ReputationAdjustmentResult rep;
+
+        public BountyResult(BountyResultType type, int payment, ReputationAdjustmentResult rep) {
+            this.type = type;
+            this.payment = payment;
+            this.rep = rep;
+        }
+    }
 public class DemoBarEventCreator extends BaseBarEventCreator {
     @Override
     public PortsideBarEvent createBarEvent() {
