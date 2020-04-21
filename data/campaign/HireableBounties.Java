@@ -131,14 +131,10 @@ CargoAPI extraBountySalvage = Global.getFactory().createCargo(true);
     }
 }
 
-// build list of prerequisite bounty IDs
-String prerequisiteBountiesString = row.optString("neverSpawnUnlessBountiesCompleted");
-List<String> prerequisiteBountiesList = null;
-if (prerequisiteBountiesString != null) {
-    prerequisiteBountiesList = new ArrayList<>(Arrays.asList(prerequisiteBountiesString.split("\\s*(,\\s*)+")));
-    if (prerequisiteBountiesList.isEmpty() || prerequisiteBountiesList.get(0).isEmpty()) {
-        prerequisiteBountiesList = null;
-    }
+// adds check for completed HVBs 
+MemoryAPI memory = Global.getSector().getMemory();
+List<String> spentBounties = (List<String>) memory.get("$vayra_uniqueBountiesSpent");
+
 
 
     public class BountyResult {
@@ -153,6 +149,7 @@ if (prerequisiteBountiesString != null) {
             this.rep = rep;
         }
     }
+    
 public class DemoBarEventCreator extends BaseBarEventCreator {
     @Override
     public PortsideBarEvent createBarEvent() {
