@@ -131,11 +131,24 @@ CargoAPI extraBountySalvage = Global.getFactory().createCargo(true);
     }
 }
 
+public class $vayra_uniqueBountiesSpent = completedHVBList
+
 // adds check for completed HVBs 
 MemoryAPI memory = Global.getSector().getMemory();
 List<String> spentBounties = (List<String>) memory.get("$vayra_uniqueBountiesSpent");
+completedHVBList = new ArrayList<>(Arrays.asList(completedHVBString.split("\\s*(,\\s*)+")));
+if (completedHVBList.isEmpty() || completedHVBList.get(0).isEmpty()) {
+    completedHVBList = null;
+}
 
-
+// build list of prerequisite bounty IDs
+String prerequisiteBountiesString = row.optString("neverSpawnUnlessBountiesCompleted");
+List<String> prerequisiteBountiesList = null;
+if (prerequisiteBountiesString != null) {
+    prerequisiteBountiesList = new ArrayList<>(Arrays.asList(prerequisiteBountiesString.split("\\s*(,\\s*)+")));
+    if (prerequisiteBountiesList.isEmpty() || prerequisiteBountiesList.get(0).isEmpty()) {
+        prerequisiteBountiesList = null;
+    }
 
     public class BountyResult {
 
